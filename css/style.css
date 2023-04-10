@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #ebebeb;
+    margin: 30px;
+}
+
+.books-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.book {
+    background: white;
+    border-radius: 10px;
+    width: 250px;
+    margin: 1rem 0;
+    padding: 0 1rem .5rem;
+    border: 2px solid transparent;
+    list-style: none;
+}
+
+h4 {
+    margin: 0;
+}
+
+.fa-stack {
+    cursor: pointer;
+    top: -.73em;
+    right: -12.86em;
+}
+
+.fa-circle {
+    color: darkblue;
+}
+
+.fa-stack:hover .fa-circle {
+    color: crimson;
+}
+
+.empty {
+    background-color: #dc143c25;
+    border: 1px solid crimson;
+    padding: 1rem;
+}

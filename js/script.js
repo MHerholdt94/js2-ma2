@@ -1,39 +1,25 @@
-import { books } from "./data/books.js";
+import createList from "./components/createList.js";
+import { saveToStorage, getFromStorage } from "./utils/storage.js";
+import { booksKey } from "./utils/settings.js";
 
-const booksContainer = document.querySelector(".books-container");
+let books = getFromStorage(booksKey);
+createList(books);
 
-let bookList = books;
+const input = document.querySelector("input");
+const addButton = document.querySelector("button");
 
-createList();
+addButton.addEventListener("click", addBook);
 
-function createList() {
-  booksContainer.innerHTML = "";
+function addBook() {
+  const inputValue = input.value.trim();
 
-  bookList.forEach(function (book) {
-    booksContainer.innerHTML += `<li class="book">
-                                        <span class="fa-stack fa-1x">
-                                            <i class="fa-solid fa-circle fa-stack-2x"></i>
-                                            <i class="fa-solid fa-trash fa-stack-1x fa-inverse" data-isbn="${book.isbn}"></i>
-                                        </span>
-                                        <h4>${book.title}</h4>
-                                        <p>${book.isbn}</p>
-                                    </li>`;
-  });
+  if (inputValue.length >= 1) {
+    const newBook = { isbn: Date.now(), title: inputValue };
+    input.value = "";
+    input.focus();
+    books.push(newBook);
 
-  const removeButton = document.querySelectorAll("li span");
-
-  removeButton.forEach(function (button) {
-    button.addEventListener("click", removeBook);
-  });
-}
-
-function removeBook() {
-  const targetIsbn = event.target.dataset.isbn;
-  const newList = bookList.filter((book) => book.isbn !== targetIsbn);
-  bookList = newList;
-  createList();
-
-  if (bookList.length === 0) {
-    booksContainer.innerHTML = `<div class="empty">The list is now empty</div>`;
+    createList(books);
+    saveToStorage(booksKey, books);
   }
 }

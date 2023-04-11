@@ -1,5 +1,5 @@
-import { saveToStorage } from "../utils/storage.js";
 import { booksKey } from "../utils/settings.js";
+import { saveToStorage } from "../utils/storage.js";
 
 export default function createList(books) {
   const booksContainer = document.querySelector(".books-container");
@@ -26,16 +26,14 @@ export default function createList(books) {
     button.addEventListener("click", removeBook);
   });
 
+  removeButton.forEach(function (button) {
+    button.addEventListener("click", removeBook);
+  });
+
   function removeBook() {
     const removeTarget = parseInt(event.target.dataset.isbn);
-
-    const newList = books.filter(function (book) {
-      if (removeTarget !== book.isbn) {
-        return true;
-      }
-    });
-
-    createList(newList);
+    const newList = books.filter((book) => book.isbn !== removeTarget);
     saveToStorage(booksKey, newList);
+    createList(newList);
   }
 }

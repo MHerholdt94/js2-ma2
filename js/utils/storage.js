@@ -3,11 +3,11 @@ export function saveToStorage(key, value) {
 }
 
 export function getFromStorage(key) {
-  const bookList = localStorage.getItem(key);
+  const books = localStorage.getItem(key);
 
-  if (!bookList) {
+  if (!books) {
     return [];
   }
 
-  return JSON.parse(bookList);
+  return JSON.parse(books);
 }

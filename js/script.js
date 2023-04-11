@@ -2,7 +2,7 @@ import createList from "./components/createList.js";
 import { saveToStorage, getFromStorage } from "./utils/storage.js";
 import { booksKey } from "./utils/settings.js";
 
-let books = getFromStorage(booksKey);
+const books = getFromStorage(booksKey);
 createList(books);
 
 const input = document.querySelector("input");
@@ -14,12 +14,12 @@ function addBook() {
   const inputValue = input.value.trim();
 
   if (inputValue.length >= 1) {
-    const newBook = { isbn: Date.now(), title: inputValue };
+    const newBook = { title: inputValue, isbn: Date.now() };
     input.value = "";
     input.focus();
     books.push(newBook);
 
-    createList(books);
     saveToStorage(booksKey, books);
+    createList(books);
   }
 }

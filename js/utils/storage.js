@@ -7,7 +7,7 @@ export function getFromStorage(key) {
 
   if (!books) {
     return [];
+  } else {
+    return JSON.parse(books);
   }
-
-  return JSON.parse(books);
 }

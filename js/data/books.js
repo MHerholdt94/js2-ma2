@@ -1,4 +1,3 @@
-// Only used for Level 1
 export const books = [
   {
     isbn: "1600506460320",

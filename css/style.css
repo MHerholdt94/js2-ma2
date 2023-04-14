@@ -33,28 +33,35 @@ button:hover {
     color: white;
 }
 
-.books-container {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+.toolbar {
+    margin-bottom: 2rem;
 }
 
-.book {
+.books-container, .list-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 0;
+    max-width: 1200px;
+}
+
+.list-item {
     background: white;
     border-radius: 10px;
     width: 250px;
-    margin: 1rem 0;
     padding: 0 1rem .5rem;
     border: 2px solid transparent;
     list-style: none;
+    overflow-wrap: break-word;
 }
 
-.book h4 {
+.list-item h4 {
     margin: 0;
     text-transform: capitalize;
 }
 
-.book p {
+.list-item p {
     font-style: italic;
 }
 
